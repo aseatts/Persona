@@ -33,10 +33,9 @@ export default {
 
   // gets the profile types
   getprofileTypes: function() {
-    const x = axios.get("api/profile");
-
-    console.log(x);
-    return x;
+    const data = axios.get("api/profile");
+    console.log(data);
+    return data;
   }
 };
 //   getprofileTypes: function() {

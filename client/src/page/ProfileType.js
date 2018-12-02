@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import API from "../component/utils/API";
+import { ListItem, List, Grid } from "@material-ui/core";
+import Button from "../component/Button";
 
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
@@ -9,47 +11,53 @@ import API from "../component/utils/API";
 
 class profileTypes extends Component {
   state = {
-    profTypes: {}
+    profTypes: []
+    //   _id: "5bec6e9f45b6665b3089ea43",
+    //   profileTypeName: "Professional",
+    //   img: "",
+    //   createdDate: "2018-11-14T18:51:11.753Z",
+    //   __v: 0
   };
   componentDidMount() {
     this.getprofTypes();
-    console.log(this.state.profTypes);
   }
   getprofTypes = () => {
     API.getprofileTypes()
       .then((res) => this.setState({ profTypes: res.data }))
       .catch((err) => console.log(err));
-    console.log(API.getprofileTypes);
   };
 
   loadProfileTypes = () => {
     API.getprofiles()
       .then((res) =>
         this.setState({
-          profileTypes: res.json
+          profTypes: res.data
         })
       )
       .catch((err) => console.log(err));
   };
 
-  // state = {
-  //   profTypes: [
-  //     { id: 1, name: "dating" },
-  //     { id: 2, name: "medwordical" },
-  //     { id: 3, name: "action" },
-  //     { id: 4, name: "dance" }
-  //   ]
-  // };
   classes = this.props;
-
-  //}
 
   render() {
     return (
-      <div>
-        {" "}
-        <p>123</p>
-      </div>
+      <fragment>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <List>
+              {this.state.profTypes.map((profiles) => {
+                return (
+                  <ListItem key={profiles._id}>
+                    <a href={"/profiles/" + profiles._id}>
+                      <Button> {profiles.profileTypeName} </Button>
+                    </a>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Grid>
+        </Grid>
+      </fragment>
     );
   }
 }
