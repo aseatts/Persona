@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import API from "../component/utils/API";
 import { ListItem, List, Grid } from "@material-ui/core";
@@ -41,14 +41,14 @@ class profileTypes extends Component {
 
   render() {
     return (
-      <fragment>
+      <Fragment>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <List>
               {this.state.profTypes.map((profiles) => {
                 return (
-                  <ListItem key={profiles._id}>
-                    <a href={"/profiles/" + profiles._id}>
+                  <ListItem alignItems="flex-start" key={profiles._id}>
+                    <a href={"/profile/" + profiles._id}>
                       <Button> {profiles.profileTypeName} </Button>
                     </a>
                   </ListItem>
@@ -57,7 +57,7 @@ class profileTypes extends Component {
             </List>
           </Grid>
         </Grid>
-      </fragment>
+      </Fragment>
     );
   }
 }

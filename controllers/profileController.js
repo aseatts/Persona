@@ -35,16 +35,29 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .then(console.log("res"))
       .catch((err) => res.status(422).json(err));
-    // getAllProfileTypes: function(req, res) {
-    //   `https://jsonplaceholder.typicode.com/users`(req.query)
-    //     .then((dbModel) => res.json(dbModel))
-    //     .catch((err) => res.status(422).json(err));
-
-    // .then((dbModel) => console.log(dbModel));
-
-    // ProfileType.find()
-    //   .sort({ date: -1 })
-    //   .then((ProfileType) => res.json(ProfileType))
-    //   .catch((err) => res.status(422).json(err));
+  },
+  getProfileType: function(req, res) {
+    db.profiletypes
+      .findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .then(console.log("res"))
+      .catch((err) => res.status(422).json(err));
+  },
+  insertProfileDetail: function(req, res) {
+    db.profileDetail
+      .create(req.body)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   }
+  // getAllProfileTypes: function(req, res) {
+  //   `https://jsonplaceholder.typicode.com/users`(req.query)
+  //     .then((dbModel) => res.json(dbModel))
+  //     .catch((err) => res.status(422).json(err));
+
+  // .then((dbModel) => console.log(dbModel));
+
+  // ProfileType.find()
+  //   .sort({ date: -1 })
+  //   .then((ProfileType) => res.json(ProfileType))
+  //   .catch((err) => res.status(422).json(err));
 };

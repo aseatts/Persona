@@ -14,6 +14,16 @@ export default {
   // getprofile: function(id) {
   //   return axios.get("/api/profile/" + id);
   // },
+  getprofile: function(id) {
+    const data = axios.get("/api/profile/" + id);
+    console.log(data);
+    return data;
+  },
+  saveprofile: function(profileData) {
+    const data = axios.post("/api/profile/", profileData);
+    console.log(profileData);
+    return data;
+  },
   // // enable/disables a profile with the given id
   // updateprofileStatus: function(id) {
   //   return axios.delete("/api/profile/" + id);
@@ -33,7 +43,7 @@ export default {
 
   // gets the profile types
   getprofileTypes: function() {
-    const data = axios.get("api/profile");
+    const data = axios.get("/api/profile");
     console.log(data);
     return data;
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ProfileTypes from "./page/ProfileType";
+import ProfileConfiguration from "./page/ProfileConfiguration";
 
 class App extends Component {
   render() {
@@ -11,7 +12,12 @@ class App extends Component {
           <Router>
             <Switch>
               <Route exact path="/" component={ProfileTypes} />
-
+              <Route exact path="/profile/" component={ProfileTypes} />
+              <Route
+                exact
+                path="/profile/:id"
+                component={ProfileConfiguration}
+              />
               <Route component={Router.NoMatch} />
               {/* </div> */}
             </Switch>
