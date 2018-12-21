@@ -20,14 +20,24 @@ export default {
     return data;
   },
   saveprofile: function(profileData) {
-    const data = axios.post("/api/profile/", profileData);
+    const data = axios.post("/api/profile/userProfile", profileData);
     console.log(profileData);
     return data;
   },
-  // // enable/disables a profile with the given id
-  // updateprofileStatus: function(id) {
-  //   return axios.delete("/api/profile/" + id);
+  // getUserProfiles: function() {
+  //   const data = axios.get("/api/profile/createUserProfile");
+  //   console.log();
+  //   return data;
   // },
+  createNewUser: function(userData) {
+    const data = axios
+      .post("/api/profile/createUserProfile", userData)
+      .then((response) => {
+        console.log(response.data);
+        return response;
+      });
+  },
+
   // // Saves a profile to the database
   // saveprofile: function(profileData) {
   //   return axios.post("/api/profile", profileData);

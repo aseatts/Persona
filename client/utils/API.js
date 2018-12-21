@@ -13,9 +13,16 @@ export default {
   //   return axios.delete("/api/profile/" + id);
   // },
   // // Saves a profile to the database
-  // saveprofile: function(profileData) {
-  //   return axios.post("/api/profile", profileData);
+  saveprofile: function(profileData) {
+    return axios.post("/api/profile", profileData);
+  },
+
+  // getUserProfiles: function(userData) {
+  //   const data = axios.post("/api/Profile/:" + userData);
+  //   console.log(data);
+  //   return data;
   // },
+
   // // gets the associate profile qestions, based on the profile type selected.
   // getprofileQuestions: function(id) {
   //   return axios.get("/api/profile/questions" + id);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ProfileTypes from "./page/ProfileType";
+import CreateNewUser from "./page/CreateNewUser";
 import ProfileConfiguration from "./page/ProfileConfiguration";
 
 class App extends Component {
@@ -11,8 +12,13 @@ class App extends Component {
         <div className="App">
           <Router>
             <Switch>
-              <Route exact path="/" component={ProfileTypes} />
+              <Route exact path="/" component={CreateNewUser} />
               <Route exact path="/profile/" component={ProfileTypes} />
+              <Route
+                exact
+                path="/CreateNewUser/"
+                component={CreateNewUser}
+              />{" "}
               <Route
                 exact
                 path="/profile/:id"

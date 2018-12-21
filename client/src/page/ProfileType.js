@@ -49,7 +49,7 @@ class profileTypes extends Component {
                 return (
                   <ListItem alignItems="flex-start" key={profiles._id}>
                     <a href={"/profile/" + profiles._id}>
-                      <Button> {profiles.profileTypeName} </Button>
+                      <Button> {profiles.profileTypeName} </Button>a
                     </a>
                   </ListItem>
                 );

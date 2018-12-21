@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-mongoose.connection.db.createCollection(profileDetails, (err) =>
-  console.log(err)
-);
-
 const profileDetailSchema = new Schema({
-  profileTypeId: { type: Object, required: true },
-  name: { type: String, required: true },
-  value: { type: String },
+  profileTypeId: { type: Object },
+  userId: { type: String, default: "*placeholder*" },
+  personaName: { type: String },
+  companyName: { type: String },
+  jobTitle: { type: String },
+  linkedIn: { type: String },
   createdDate: { type: Date, default: Date.now }
 });
-const profileDetail = mongoose.model("ProfileTypes", profileDetailSchema);
+const profileDetail = mongoose.model("ProfileDetails", profileDetailSchema);
 module.exports = profileDetail;

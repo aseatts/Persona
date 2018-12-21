@@ -4,7 +4,8 @@ const profileController = require("../../controllers/profileController");
 router.get("/", profileController.getAllProfileTypes);
 //   .post("/", profileController.getAllProfileTypes);
 router.get("/:id", profileController.getProfileType);
-router.post("/:id", profileController.insertProfileDetail);
+router.post("/createUserProfile", profileController.insertNewUser);
+router.get("/:userName", profileController.getUserProfiles);
 
 //router.route("/").get(profileController.getAllProfileTypes);
 

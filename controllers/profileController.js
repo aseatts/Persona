@@ -1,4 +1,6 @@
 const db = require("../models");
+const dbdeet = require("../models/profileDetail");
+const userProfile = require("../models/userProfile");
 console.log(__filename);
 // Defining methods for the booksControllercd
 module.exports = {
@@ -44,11 +46,27 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   insertProfileDetail: function(req, res) {
-    db.profileDetail
+    dbdeet
       .create(req.body)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
+  },
+
+  insertNewUser: function(req, res) {
+    userProfile
+      .create(req.body)
+      .then((dbModel) => res.json(dbModel))
+
+      .catch((err) => res.status(422).json(err));
+  },
+  getUserProfiles: function(req, res) {
+    userData
+      .findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .then(console.log("res"))
+      .catch((err) => res.status(422).json(err));
   }
+
   // getAllProfileTypes: function(req, res) {
   //   `https://jsonplaceholder.typicode.com/users`(req.query)
   //     .then((dbModel) => res.json(dbModel))
