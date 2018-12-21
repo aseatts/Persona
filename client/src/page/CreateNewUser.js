@@ -23,9 +23,21 @@ class CreateNewUser extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  loadProfiles = () => {
+    API.getUserProfiles(this.state.userName)
+      .then((response) =>
+        this.setState({
+          newUserResInfo: response
+        })
+      )
+      .then(console.log(this.state))
+      .catch((err) => console.log(err));
+  };
+
   handleChange = (name) => (event) => {
+    const { name, value } = event.target;
     this.setState({
-      [name]: event.target.value
+      [name]: value
     });
     console.log(this.state);
   };
@@ -33,19 +45,13 @@ class CreateNewUser extends Component {
   // this is stuck where is cannot see the .then
   handleFormSubmit = (event) => {
     event.preventDefault();
-    API.createNewUser({
-      userName: this.state.userName,
-      userPW: this.state.userPW,
-      userEmail: this.state.userEmail
-    }).then(() => this.loadProfiles());
-
-    // .then((res) => this.setState({ newUserResInfo: res.data.json }))
-  };
-
-  loadProfiles = () => {
-    API.getUserProfiles(this.state.userName)
-      .then((res) => this.setState({ userID: res.json }))
-      .catch((err) => console.log(err));
+    if (this.state.userName && this.state.userPW && this.state.userEmail) {
+      API.createNewUser({
+        userName: this.state.userName,
+        userPW: this.state.userPW,
+        userEmail: this.state.userEmail
+      }).then(() => this.loadProfiles());
+    }
   };
 
   //     .then((res) =>
@@ -55,8 +61,7 @@ class CreateNewUser extends Component {
   //     )
   //     .catch((err) => console.log(err));
 
-  // hashPw = (
-  //   myPlaintextPassword = this.state.userPW,
+  // hashPw = (  //   myPlaintextPassword = this.state.userPW,
   //   salt = this.state.setState
   // ) => {
 

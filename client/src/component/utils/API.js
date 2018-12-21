@@ -25,17 +25,21 @@ export default {
     return data;
   },
   getUserProfiles: function(userName) {
-    const data = axios.get("/api/userProfiles/" + userName);
-    console.log(data);
-    return data;
+    return axios.get("/api/userProfile", userName).then(function(response) {
+      console.log(response);
+      return response;
+    });
   },
   createNewUser: function(userData) {
-    const data = axios
+    return axios
       .post("/api/profile/createUserProfile", userData)
-      .then((response) => {
-        console.log(response.data);
+      .then(function(response) {
         return response;
       });
+    // .post("/api/profile/createUserProfile", userData)
+    // .then((response) => {
+
+    //   return response;
   },
 
   // // Saves a profile to the database
