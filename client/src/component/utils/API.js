@@ -24,11 +24,11 @@ export default {
     console.log(profileData);
     return data;
   },
-  // getUserProfiles: function() {
-  //   const data = axios.get("/api/profile/createUserProfile");
-  //   console.log();
-  //   return data;
-  // },
+  getUserProfiles: function(userName) {
+    const data = axios.get("/api/userProfiles/" + userName);
+    console.log(data);
+    return data;
+  },
   createNewUser: function(userData) {
     const data = axios
       .post("/api/profile/createUserProfile", userData)

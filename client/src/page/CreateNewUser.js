@@ -12,12 +12,11 @@ class CreateNewUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newUserDetails: {
-        userName: "",
-        userPW: "",
-        saltRounds: 10
-      },
-      newUserResInfo: []
+      userName: "",
+      userPW: "",
+      saltRounds: 10,
+      newUserResInfo: [],
+      userID: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,23 +30,24 @@ class CreateNewUser extends Component {
     console.log(this.state);
   };
 
+  // this is stuck where is cannot see the .then
   handleFormSubmit = (event) => {
     event.preventDefault();
     API.createNewUser({
-      userName: this.state.value,
-      userPW: this.state.value,
-      userEmail: this.state.value
-    });
-    this.test();
+      userName: this.state.userName,
+      userPW: this.state.userPW,
+      userEmail: this.state.userEmail
+    }).then(() => this.loadProfiles());
+
     // .then((res) => this.setState({ newUserResInfo: res.data.json }))
   };
 
-  test = (handleFormSubmit) => {
-    const milk = handleFormSubmit.console.log(Response);
-    return milk;
+  loadProfiles = () => {
+    API.getUserProfiles(this.state.userName)
+      .then((res) => this.setState({ userID: res.json }))
+      .catch((err) => console.log(err));
   };
-  // loadProfileTypes = () => {
-  //   API.getprofiles()
+
   //     .then((res) =>
   //       this.setState({
   //         profTypes: res.data
@@ -80,7 +80,7 @@ class CreateNewUser extends Component {
                   inputtype="String"
                   style={{ margin: 8 }}
                   placeholder="User"
-                  value={this.state.name}
+                  value={this.state.userName}
                   onChange={this.handleChange("userName")}
                   margin="normal"
                   name="userName"
