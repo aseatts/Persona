@@ -1,4 +1,4 @@
-import React, { Component, Fragment, LinkTo } from "react";
+import React, { Component, Fragment, Link } from "react";
 // import bcrypt from "bcrypt";
 import API from "../component/utils/API";
 import { ListItem, List, Grid } from "@material-ui/core";
@@ -15,7 +15,7 @@ class CreateNewUser extends Component {
       userName: "",
       userPW: "",
       saltRounds: 10,
-      newUserResInfo: [],
+      newUserResInfo: "",
       userID: []
     };
 
@@ -27,10 +27,12 @@ class CreateNewUser extends Component {
     API.getUserProfiles(this.state.userName)
       .then((response) =>
         this.setState({
-          newUserResInfo: response
+          newUserResInfo: response.data._id
         })
       )
       .then(console.log(this.state))
+      .then(console.log("/profile/" + this.state.newUserResInfo))
+
       .catch((err) => console.log(err));
   };
 
@@ -71,6 +73,7 @@ class CreateNewUser extends Component {
   // };
 
   render() {
+    const jazz = () => this.state;
     return (
       <Fragment>
         <Grid container spacing={24}>
@@ -124,11 +127,18 @@ class CreateNewUser extends Component {
                 <Button
                   id="submit"
                   label="submitButton"
-                  inputtype="String"
                   style={{ margin: 8 }}
                   onClick={this.handleFormSubmit}
                 >
                   Submit
+                </Button>
+                <Button
+                  id="Next"
+                  label="next"
+                  Link
+                  to={"/profile/" + jazz.newUserResInfo}
+                >
+                  Next Page
                 </Button>
               </Grid>
             </form>

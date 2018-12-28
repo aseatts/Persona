@@ -15,7 +15,7 @@ export default {
   //   return axios.get("/api/profile/" + id);
   // },
   getprofile: function(id) {
-    const data = axios.get("/api/profile/" + id);
+    const data = axios.get("/api/profile/");
     console.log(data);
     return data;
   },

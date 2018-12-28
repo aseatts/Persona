@@ -60,7 +60,8 @@ module.exports = {
   },
   getUserProfiles: function(req, res) {
     userProfile
-      .find({ userName: req.params.userName })
+      .findOne({ userName: req.params.userName })
+
       .then((dbModel) => res.json(dbModel))
       .then(console.log(res.json))
       .catch((err) => res.status(422).json(err));

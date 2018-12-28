@@ -4,6 +4,9 @@ import API from "../component/utils/API";
 import { ListItem, List, Grid } from "@material-ui/core";
 import Button from "../component/Button";
 import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 
@@ -16,7 +19,9 @@ class profileTypes extends Component {
     profileTypeId: this.props.match.params.id,
     personaName: "",
     companyName: "",
-    jobTitle: ""
+    jobTitle: "",
+    PersonaDetails:
+      "AB Initio / Big Data Developer primary review and recommend data modelling approaches, develop Oracle PL/SQL stored processes, Ab Initio, ETL, Unix scripting and Bigdata ETL processes (using Hadoop, HIVE, Spark into automated/functional processes during sprints. Experienced agile scrum master. Specialization in automated system and unit and pre-integration regression acceptance focus on early automation and continuous integration. In depth knowledge local and cloud architecture solutions.  "
     //   profileTypeName: "Professional",
     //   img: "",
     //   createdDate: "2018-11-14T18:51:11.753Z",
@@ -48,7 +53,8 @@ class profileTypes extends Component {
         personaName: this.state.personaName,
         companyName: this.state.companyName,
         jobTitle: this.state.jobTitle,
-        linkedIn: this.state.linkedIn
+        linkedIn: this.state.linkedIn,
+        profileTypeName: this.state.profileTypeName
       })
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
@@ -61,9 +67,31 @@ class profileTypes extends Component {
       <Fragment>
         <Grid container spacing={24}>
           <Grid alignItems="flex-start" item xs={12}>
-            <Button> {this.state.profile.profileTypeName} </Button>
             <form>
-              {" "}
+              <Select
+                value={this.state.profileTypeName}
+                onChange={this.handleChange("profileTypeName")}
+                input={
+                  <OutlinedInput name="Persona Type" id="outlined-age-simple" />
+                }
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Business</MenuItem>
+                <MenuItem value={20}>Personal</MenuItem>
+                <MenuItem value={30}>Social</MenuItem>
+              </Select>
+
+              <TextField
+                id="profileTypeName"
+                label="Profile Name"
+                style={{ margin: 8 }}
+                value={this.state.profileTypeName}
+                onChange={this.handleChange("profileTypeName")}
+                margin="normal"
+                name="profileTypeNames`"
+              />
               <Grid item xs={6}>
                 <TextField
                   id="personaName"

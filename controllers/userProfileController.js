@@ -60,9 +60,8 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   getUserProfiles: function(req, res) {
-    userProfile
-      // .findOne({ userName: req.params.userName })
-      .find()
+    userProfile.findOne({ userName: req.params.userName });
+    dfind()
       .then((dbModel) => res.json(dbModel))
       .then(console.log(res.json))
       .catch((err) => res.status(422).json(err));
