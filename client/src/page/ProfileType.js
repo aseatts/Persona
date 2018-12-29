@@ -9,7 +9,7 @@ import Button from "../component/Button";
 
 // import ProfileCreate from "profileCreate";
 
-class profileTypes extends Component {
+class profileType extends Component {
   state = {
     profTypes: []
     //   _id: "5bec6e9f45b6665b3089ea43",
@@ -49,7 +49,7 @@ class profileTypes extends Component {
                 return (
                   <ListItem alignItems="flex-start" key={profiles._id}>
                     <a href={"/profile/" + profiles._id}>
-                      <Button> {profiles.profileTypeName} </Button>a
+                      <Button> {profiles.profileTypeName} </Button>
                     </a>
                   </ListItem>
                 );
@@ -61,4 +61,4 @@ class profileTypes extends Component {
     );
   }
 }
-export default profileTypes;
+export default profileType;

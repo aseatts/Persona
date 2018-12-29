@@ -31,5 +31,12 @@ export default {
     console.log(x);
     console.log(process.env.PORT);
     return x;
+  },
+
+  API: function() {
+    const x = axios.get("/api/");
+    console.log(x);
+    console.log(process.env.PORT);
+    return x;
   }
 };

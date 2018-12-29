@@ -1,9 +1,19 @@
 import React, { Component, Fragment, Link } from "react";
 // import bcrypt from "bcrypt";
 import API from "../component/utils/API";
-import { ListItem, List, Grid } from "@material-ui/core";
+import {
+  ListItem,
+  List,
+  Grid,
+  FormControl,
+  FormLabel,
+  Input,
+  Fade,
+  TextField
+} from "@material-ui/core";
+
 import Button from "../component/Button";
-import TextField from "@material-ui/core/TextField";
+
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 
@@ -76,74 +86,53 @@ class CreateNewUser extends Component {
     const jazz = () => this.state;
     return (
       <Fragment>
-        <Grid container spacing={24}>
-          <Grid alignitems="flex-start" itemxs={12}>
-            {/* <Button> {this.state.profile.profileTypeName} </Button> */}
-            <form>
-              {" "}
-              <Grid item xs={6}>
-                <TextField
-                  id="userName"
-                  label="UserName"
-                  inputtype="String"
-                  style={{ margin: 8 }}
-                  placeholder="User"
-                  value={this.state.userName}
-                  onChange={this.handleChange("userName")}
-                  margin="normal"
-                  name="userName"
-                />
-                <TextField
-                  id="userEmailAddress"
-                  label="userEmailAddresss"
-                  inputtype="text"
-                  style={{ margin: 8 }}
-                  placeholder="you@somemail.com"
-                  value={this.state.userEmail}
-                  onChange={this.handleChange("userEmail")}
-                  margin="normal"
-                  name="userEmail"
-                />
-                <TextField
-                  id="userPW"
-                  label="userPW"
-                  inputtype="text"
-                  style={{ margin: 8 }}
-                  value={this.state.userPW}
-                  onChange={this.handleChange("userPW")}
-                  margin="normal"
-                  name="userPW"
-                />
-                {/* <TextField
-                    id="userPW2"
-                    label="userPW2"
+        <div class="CenterMe">
+          <Grid container spacing={24}>
+            <Grid alignitems="flex-start" itemxs={12}>
+              <FormControl>
+                <FormLabel fullWidth={true}>
+                  Provide a Name for you new profile?
+                  <Input
+                    id="userName"
+                    label="UserName"
+                    inputtype="String"
+                    placeholder="User123"
+                    fullWidth={true}
+                    value={this.state.userName}
+                    onChange={this.handleChange("userName")}
+                    name="userName"
+                  />{" "}
+                  <TextField
+                    id="userEmailAddress"
+                    label="userEmailAddresss"
+                    inputtype="text"
                     style={{ margin: 8 }}
-                    value={this.state.userPW2.toString()}
-                    onChange={this.handleChange("userPW2")}
+                    placeholder="you@somemail.com"
+                    value={this.state.userEmail}
+                    onChange={this.handleChange("userEmail")}
                     margin="normal"
-                    name="userPW2"
-                  /> */}
-
-                <Button
-                  id="submit"
-                  label="submitButton"
-                  style={{ margin: 8 }}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit
-                </Button>
-                <Button
-                  id="Next"
-                  label="next"
-                  Link
-                  to={"/profile/" + jazz.newUserResInfo}
-                >
-                  Next Page
-                </Button>
-              </Grid>
-            </form>
+                    name="userEmail"
+                  />
+                  <TextField
+                    id="userPW"
+                    label="userPW"
+                    inputtype="text"
+                    style={{ margin: 8 }}
+                    value={this.state.userPW}
+                    onChange={this.handleChange("userPW")}
+                    margin="normal"
+                    name="userPW"
+                  />
+                </FormLabel>
+              </FormControl>
+              <Button>
+                <a href={"/25"}>
+                  <h1> Submit</h1>{" "}
+                </a>
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       </Fragment>
     );
   }

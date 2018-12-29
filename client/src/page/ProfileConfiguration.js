@@ -1,12 +1,19 @@
 import React, { Component, Fragment } from "react";
 
 import API from "../component/utils/API";
-import { ListItem, List, Grid } from "@material-ui/core";
+import {
+  ListItem,
+  List,
+  Grid,
+  FormControl,
+  FormLabel
+} from "@material-ui/core";
 import Button from "../component/Button";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 
@@ -65,34 +72,37 @@ class profileTypes extends Component {
   render() {
     return (
       <Fragment>
-        <Grid container spacing={24}>
-          <Grid alignItems="flex-start" item xs={12}>
-            <form>
-              <Select
-                value={this.state.profileTypeName}
-                onChange={this.handleChange("profileTypeName")}
-                input={
-                  <OutlinedInput name="Persona Type" id="outlined-age-simple" />
-                }
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Business</MenuItem>
-                <MenuItem value={20}>Personal</MenuItem>
-                <MenuItem value={30}>Social</MenuItem>
-              </Select>
+        <div className="CenterMe">
+          <Grid alignitems="flex-start" itemxs={12}>
+            <FormControl>
+              <FormLabel fullWidth={true}>
+                <Select
+                  value={this.state.profileTypeName}
+                  onChange={this.handleChange("profileTypeName")}
+                  input={
+                    <OutlinedInput
+                      name="Persona Type"
+                      id="outlined-age-simple"
+                    />
+                  }
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Business</MenuItem>
+                  <MenuItem value={20}>Personal</MenuItem>
+                  <MenuItem value={30}>Social</MenuItem>
+                </Select>
 
-              <TextField
-                id="profileTypeName"
-                label="Profile Name"
-                style={{ margin: 8 }}
-                value={this.state.profileTypeName}
-                onChange={this.handleChange("profileTypeName")}
-                margin="normal"
-                name="profileTypeNames`"
-              />
-              <Grid item xs={6}>
+                <TextField
+                  id="profileTypeName"
+                  label="Profile Name"
+                  style={{ margin: 8 }}
+                  value={this.state.profileTypeName}
+                  onChange={this.handleChange("profileTypeName")}
+                  margin="normal"
+                  name="profileTypeNames`"
+                />
                 <TextField
                   id="personaName"
                   label="Persona Name"
@@ -135,14 +145,15 @@ class profileTypes extends Component {
                   id="submit"
                   label="submitButton"
                   style={{ margin: 8 }}
-                  onClick={this.handleFormSubmit}
+                  href="/29"
+                  // onClick={this.handleFormSubmit}
                 >
                   Submit
                 </Button>
-              </Grid>
-            </form>
+              </FormLabel>
+            </FormControl>
           </Grid>
-        </Grid>
+        </div>
       </Fragment>
     );
   }
