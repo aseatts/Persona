@@ -127,7 +127,7 @@ class CreateNewUser extends Component {
               </FormControl>
               <Button>
                 <a href={"/25"}>
-                  <h1> Submit</h1>{" "}
+                  <h1> Submit</h1>
                 </a>
               </Button>
             </Grid>

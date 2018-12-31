@@ -1,19 +1,16 @@
 import React, { Component, Fragment } from "react";
-
+import { Redirect, Push } from "react-router";
 import API from "../component/utils/API";
-import {
-  ListItem,
-  List,
-  Grid,
-  FormControl,
-  FormLabel
-} from "@material-ui/core";
+import { Fade, Grid, FormControl, FormLabel } from "@material-ui/core";
 import Button from "../component/Button";
+import ControlledOpenSelect from "../component/ProfileTypeSelector";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
-
+import "../index.css";
+import ProfileType from "../page/ProfileType";
+import profileType from "../page/ProfileType";
 // import ListItemIcon from '@material-ui/core/ListItemIcon';
 // import ListItemText from '@material-ui/core/ListItemText';
 
@@ -25,14 +22,10 @@ class profileTypes extends Component {
     userProfiles: [],
     profileTypeId: this.props.match.params.id,
     personaName: "",
-    companyName: "",
-    jobTitle: "",
-    PersonaDetails:
+
+    profileTypeName: "Professional",
+    personaDetails:
       "AB Initio / Big Data Developer primary review and recommend data modelling approaches, develop Oracle PL/SQL stored processes, Ab Initio, ETL, Unix scripting and Bigdata ETL processes (using Hadoop, HIVE, Spark into automated/functional processes during sprints. Experienced agile scrum master. Specialization in automated system and unit and pre-integration regression acceptance focus on early automation and continuous integration. In depth knowledge local and cloud architecture solutions.  "
-    //   profileTypeName: "Professional",
-    //   img: "",
-    //   createdDate: "2018-11-14T18:51:11.753Z",
-    //   __v: 0
   };
   componentDidMount() {
     API.getprofile(this.props.match.params.id)
@@ -44,6 +37,7 @@ class profileTypes extends Component {
       [name]: event.target.value
     });
     console.log(this.state);
+    console.log(this.state.profileTypeName);
   };
 
   loadProfiles = () => {
@@ -57,102 +51,98 @@ class profileTypes extends Component {
       API.saveprofile({
         profileTypeId: this.props.match.params.id,
         userid: "",
-        personaName: this.state.personaName,
+
         companyName: this.state.companyName,
         jobTitle: this.state.jobTitle,
-        linkedIn: this.state.linkedIn,
-        profileTypeName: this.state.profileTypeName
+        linkedInUrl: this.state.linkedIn,
+        profileTypeName: this.state.profileTypeName,
+        personaDetails: this.state.personaDetails
       })
         .then((res) => console.log(res))
+        .then(this.props.history.push("/29"))
         .catch((err) => console.log(err));
     }
   };
-  classes = this.props;
 
   render() {
     return (
       <Fragment>
-        <div className="CenterMe">
-          <Grid alignitems="flex-start" itemxs={12}>
-            <FormControl>
-              <FormLabel fullWidth={true}>
-                <Select
-                  value={this.state.profileTypeName}
-                  onChange={this.handleChange("profileTypeName")}
-                  input={
-                    <OutlinedInput
-                      name="Persona Type"
-                      id="outlined-age-simple"
-                    />
-                  }
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Business</MenuItem>
-                  <MenuItem value={20}>Personal</MenuItem>
-                  <MenuItem value={30}>Social</MenuItem>
-                </Select>
-
-                <TextField
-                  id="profileTypeName"
-                  label="Profile Name"
-                  style={{ margin: 8 }}
-                  value={this.state.profileTypeName}
-                  onChange={this.handleChange("profileTypeName")}
-                  margin="normal"
-                  name="profileTypeNames`"
-                />
-                <TextField
-                  id="personaName"
-                  label="Persona Name"
-                  style={{ margin: 8 }}
-                  placeholder="Maedre"
-                  value={this.state.name}
-                  onChange={this.handleChange("personaName")}
-                  margin="normal"
-                  name="personaName"
-                />
-                <TextField
-                  id="companyName"
-                  label="Company Name"
-                  style={{ margin: 8 }}
-                  value={this.state.name}
-                  onChange={this.handleChange("companyName")}
-                  margin="normal"
-                  name="companyName"
-                />
-                <TextField
-                  id="jobTitle"
-                  label="jobTitle"
-                  style={{ margin: 8 }}
-                  value={this.state.name}
-                  onChange={this.handleChange("jobTitle")}
-                  margin="normal"
-                  name="jobTitle"
-                />
-                <TextField
-                  id="linkedIn"
-                  label="LinkedIn Profile URL"
-                  style={{ margin: 8 }}
-                  value={this.state.name}
-                  fullWidth
-                  onChange={this.handleChange("linkedIn")}
-                  margin="normal"
-                  name="LinkedInURL"
-                />
-                <Button
-                  id="submit"
-                  label="submitButton"
-                  style={{ margin: 8 }}
-                  href="/29"
-                  // onClick={this.handleFormSubmit}
-                >
-                  Submit
-                </Button>
-              </FormLabel>
-            </FormControl>
-          </Grid>
+        <div className="centerMe">
+          <div>
+            <ControlledOpenSelect />
+            <form>
+              {" "}
+              <FormControl>
+                <FormLabel>
+                  <TextField
+                    id="personaName"
+                    label="Persona Name"
+                    style={{ margin: 8 }}
+                    placeholder="Maedre"
+                    value={this.state.name}
+                    onChange={this.handleChange("personaName")}
+                    margin="normal"
+                    name="personaName"
+                  />
+                </FormLabel>
+                <FormLabel>
+                  <TextField
+                    id="companyName"
+                    label="Company Name"
+                    style={{ margin: 8 }}
+                    value={this.state.name}
+                    onChange={this.handleChange("companyName")}
+                    margin="normal"
+                    name="companyName"
+                  />{" "}
+                </FormLabel>
+                <FormLabel>
+                  <TextField
+                    id="jobTitle"
+                    label="jobTitle"
+                    style={{ margin: 8 }}
+                    value={this.state.name}
+                    onChange={this.handleChange("jobTitle")}
+                    margin="normal"
+                    name="jobTitle"
+                  />{" "}
+                </FormLabel>
+                <FormLabel>
+                  <TextField
+                    id="linkedIn"
+                    label="LinkedIn Profile URL"
+                    style={{ margin: 8 }}
+                    value={this.state.name}
+                    onChange={this.handleChange("linkedIn")}
+                    margin="normal"
+                    name="LinkedInURL"
+                  />{" "}
+                </FormLabel>
+                <FormLabel>
+                  <TextField
+                    id="linkedIn"
+                    label="Profile Details"
+                    style={{ margin: 8 }}
+                    value={this.state.name}
+                    onChange={this.handleChange("linkedIn")}
+                    margin="normal"
+                    name="Brief Description of what makes this persona special"
+                  />{" "}
+                </FormLabel>
+                <FormLabel>
+                  <Button
+                    id="submit"
+                    label="submitButton"
+                    style={{ margin: 8 }}
+                    // href="/29"
+                    onClick={this.handleFormSubmit}
+                  >
+                    Submit
+                  </Button>
+                </FormLabel>
+              </FormControl>
+            </form>
+          </div>
         </div>
       </Fragment>
     );

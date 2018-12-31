@@ -1,17 +1,11 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import API from "../api/utils/API";
+
 import LogIn from "../component/login/LogIn";
 import CreateNewAccount from "../component/login/CreateNewAccount";
-
-import App from "../App";
 
 //
 // import Grid from "@material-ui/core/Grid";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import Grid from "@material-ui/core/Grid";
-
-import { FormLabel, Input, Fade, CssBaseline } from "@material-ui/core";
 
 // import createMuiTheme from "../component/Mui";
 // import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
@@ -20,7 +14,6 @@ import { FormLabel, Input, Fade, CssBaseline } from "@material-ui/core";
 
 // import ClassNames from "./component/ButtonGradTest.js";
 // import InputObjects from ".component/profile/InputObjects";
-let fmTypeSwitch = 1;
 
 class Welcome extends Component {
   import;
@@ -39,23 +32,6 @@ class Welcome extends Component {
   handleCreateAccountClick() {
     this.setState({ isLoggedIn: false });
   }
-
-  handleSignUp = (event) => {
-    event.preventDefault();
-    console.log("I'm signing up baby", this.state);
-    API.signup(this.state).then(function(response) {
-      console.log(response);
-    });
-  };
-  captureInput = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  handlecheckNew = () => {
-    fmTypeSwitch = fmTypeSwitch * -1;
-  };
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;

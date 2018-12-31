@@ -20,7 +20,7 @@ export default {
     return data;
   },
   saveprofile: function(profileData) {
-    const data = axios.post("/api/profile/userProfile", profileData);
+    const data = axios.post("/api/profile/createUserProfile ", profileData);
     console.log(profileData);
     return data;
   },

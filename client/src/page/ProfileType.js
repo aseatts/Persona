@@ -27,15 +27,15 @@ class profileType extends Component {
       .catch((err) => console.log(err));
   };
 
-  loadProfileTypes = () => {
-    API.getprofiles()
-      .then((res) =>
-        this.setState({
-          profTypes: res.data
-        })
-      )
-      .catch((err) => console.log(err));
-  };
+  // loadProfileTypes = () => {
+  //   API.getprofiles()
+  //     .then((res) =>
+  //       this.setState({
+  //         profTypes: res.data
+  //       })
+  //     )
+  //     .catch((err) => console.log(err));
+  // };
 
   classes = this.props;
 
