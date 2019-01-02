@@ -1,18 +1,19 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import API from "../../api/utils/API";
-//
-// import Grid from "@material-ui/core/Grid";
+import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
+import { Redirect, Push } from "react-router";
+import API from "../../component/utils/API";
+import "../../css/index.css";
 import Button from "../Button";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 
 import {
   FormControl,
   FormLabel,
-  Input,
+  TextField,
   Fade,
-  CssBaseline,
-  ButtonBase
+  ButtonBase,
+  MenuItem,
+  Select
 } from "@material-ui/core";
 
 // import createMuiTheme from "../component/Mui";
@@ -23,53 +24,90 @@ import {
 // import ClassNames from "./component/ButtonGradTest.js";
 // import InputObjects from ".component/profile/InputObjects";
 
-class LogIn extends Component {
+class CreateNewAccount extends Component {
   import;
   state = {
-    UserInputs: {
-      username: "",
-      password: ""
-    },
-    LoginStyles: { Color: "white", textAlign: "center" }
+    userName: "",
+    userPW: ""
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.userName && this.state.userPW) {
+      API.saveprofile({
+        userName: this.state.userName,
+        userPW: this.state.userPW
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+        .then(this.props.history.push("/25"));
+    }
+  };
+
+  captureInput = (name) => (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handlecheckExisting = (check) => {
+    this.setState({ check: true });
+  };
+
+  handlecheckNew = (check) => {
+    this.setState({ check: false });
   };
 
   render() {
     return (
       <Fragment>
-        <Grid containter>
-          <Grid container spacing={24}>
-            <Grid alignItems="flex-start" item xs={12}>
-              <h1> Welcome Back</h1>
-              <FormControl>
-                <Input
-                  className="spaceme"
-                  justify="center"
-                  id="UserName"
-                  placeholder="UserName"
-                  fullWidth={true}
-                />
-                <Input
-                  justify="center"
-                  id="Password"
-                  placeholder="Password"
-                  fullWidth={true}
-                  to="/"
-                />
+        <div>
+          <Fade in={true} mountOnEnter unmountOnExit>
+            <div className="CenterMe">
+              <h1> Welcome to Persona</h1>
 
+              <FormControl>
+                <FormLabel>
+                  <TextField
+                    id="userName"
+                    label="User Name"
+                    style={{ margin: 8 }}
+                    placeholder="User Name"
+                    value={this.state.userName}
+                    onChange={this.captureInput("userName")}
+                    margin="normal"
+                    name="userName"
+                  />
+                </FormLabel>
+                <FormLabel>
+                  <TextField
+                    id="userPW"
+                    label="Password "
+                    style={{ margin: 8 }}
+                    value={this.state.userPW}
+                    onChange={this.captureInput("userPW")}
+                    margin="normal"
+                    name="userPW"
+                  />{" "}
+                </FormLabel>
+                {/* <Button>
+                  <a href={"/25"} />k   
+                </Button> */}
                 <Button
                   id="submit"
                   label="submitButton"
                   style={{ margin: 8 }}
-                  href={"/15"}
+                  // href="/29"
+                  onClick={this.handleFormSubmit}
                 >
-                  Submit{" "}
+                  Submit
                 </Button>
               </FormControl>
-            </Grid>{" "}
-          </Grid>
-        </Grid>
+            </div>
+          </Fade>
+        </div>
       </Fragment>
     );
   }
 }
-export default LogIn;
+export default withRouter(CreateNewAccount);

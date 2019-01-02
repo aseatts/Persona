@@ -11,7 +11,6 @@ import Background from "./css/Background/BG_awake.png";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import "./App.css";
 import CreateNewAccount from "./component/login/CreateNewAccount";
-// import "./css/index.css";
 
 class App extends Component {
   render() {
@@ -22,12 +21,12 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Welcome} />
               {/* dynamic switch from welcome   <LogIn />The first path [1]x = the existing user path*/}
-
               <Route exact path="/10" component={LogIn} />
+
               <Route exact path="/15" component={DisplayProfile} />
               {/* dynamic  switch to CreateNewAccount The first path [1]x = the existing user path*/}
               <Route exact path="/020" component={CreateNewAccount} />
-              <Route exact path="/20" component={CreateNewUser} />
+              {/* <Route exact path="/20" component={CreateNewUser} />   */}
               <Route exact path="/25" component={ProfileConfiguration} />
               <Route exact path="/29" component={DisplayProfile} />
               {/* <Route exact path="/profile/" component={ProfileTypes} />
